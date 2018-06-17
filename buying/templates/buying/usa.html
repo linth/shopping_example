@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>拍賣網站-搜尋商品進度</title>
+
+	<!-- Bootstrap core CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load staticfiles %}
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <!-- <link href="{% static 'resume/css/bootstrap.min.css' %}" rel="stylesheet"> -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	  <!-- Custom styles for this template -->
+	  <!-- <link href="{% static 'signin.css' %}" rel="stylesheet"> -->
+	</head>
+	<body>
+
+	  <nav class="navbar navbar-default">
+	    <div class="container-fluid">
+	      <div class="navbar-header">
+	        <a class="navbar-brand" href="{% url 'home' %}">拍賣網站</a>
+	      </div>
+	      <ul class="nav navbar-nav">
+	      	<li><a href="{% url 'order_form' %}">填寫訂購單</a></li>
+	      	<li><a href="{% url 'order_check' %}">匯款確認單</a></li>
+	      	<li><a href="{% url 'order_second_check' %}">第二次匯款確認單</a></li>
+	        <li class=""><a href="{% url 'search' %}">訂單追蹤系統</a></li>
+	        <!-- <li><a href="#">留言板</a></li>
+	        <li><a href="#">聯絡我</a></li> -->
+	      </ul>
+	    </div>
+	  </nav>
+	</head>
+	<body>
+	<div class="container">
+    	<div class="jumbotron" style="font-size: 30px">
+	      <strong>拍賣網站</strong>
+    	</div>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-sm-2"></div>
+    			<div class="col-sm-8">
+    				<form method="GET" novalidate>
+						<div class="col-xs-6">
+							<input class="form-control" type="text" name="q" placeholder="請輸入訂單號碼">
+						</div>
+						<!-- <div class="form-group btn-block">
+							<input class="form-control" type="text" name="q2" placeholder="請輸入手機電話號碼">
+						</div> -->
+						<div class="col-xs-2">
+							<button class="btn btn btn-primary btn-block" type="submit"><b><span class="glyphicon glyphicon-search"></span> 搜尋</b></button>
+						</div>
+					</form>
+    			</div>
+    			<div class="col-sm-2"></div>
+    		</div>
+    	</div>
+    	<hr>
+    	<!-- THE RESULT OF SEARCH. -->
+    	<div class="container">
+    		<div class="row">
+    			<!-- <div class="col-sm-2"></div> -->
+    			<div class="col-sm-4">
+					<div class="">
+						<table class="table table table-striped">
+					    <thead>
+					      <tr>
+					        <th>商品名稱</th>
+					        <th>Facebook</th>
+					        <th>銀行</th>
+					        <th>銀行後5碼</th>
+					        <!-- <th>訂單編號</th> -->
+					      </tr>
+					    </thead>					    
+					    <tbody>
+					      {% for order_object in list_order %}
+					      <tr>
+					        <td>{{ order_object.product }}</td>
+					        <td>{{ order_object.facebook }}</td>
+					        <td>{{ order_object.bank }}</td>
+					        <td>{{ order_object.last_5_digits }}</td>
+					        <!-- <td>{{ order_object.order_id_number }}</td> -->
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					  </table>
+					</div>
+    			</div>
+    			<div class="col-sm-8">
+    				<table class="table table table-striped"> <!-- table-hover -->
+					    <thead>
+					      <tr>
+					        <th>訂單編號</th>
+					        <!-- <th>手機號碼</th> -->
+					        <th>第一次繳費</th>
+					        <th>確認繳費</th>
+					        <th>已訂貨</th>
+					        <th>美國收貨</th>
+					        <th>運費</th>
+					        <th>寄達台灣</th>
+					        <th>寄出</th>
+					        <th>追蹤碼</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for orderstatus_object in list_orderStatus %}
+					      <tr>
+					      	<td>{{ orderstatus_object.orderID }}</td>
+					      	<!-- <td>{{ orderstatus_object.phone }}</td> -->
+					      	{% if orderstatus_object.PaymentNotice == True %}
+					      		<td class="success">完成</td>
+				      		{% else %}
+				      			<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	{% if orderstatus_object.PaymentReceived == True %}
+					      		<td class="success">完成</td>
+					      	{% else %}
+					      		<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	{% if orderstatus_object.Ordered == True %}
+					      		<td class="success">完成</td>
+					      	{% else %}
+					      		<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	{% if orderstatus_object.OrderReceivedUSA == True %}
+					      		<td class="success">完成</td>
+					      	{% else %}
+					      		<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	{% if orderstatus_object.ShippingFee == True %}
+					      		<td class="success">完成</td>
+					      	{% else %}
+					      		<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	{% if orderstatus_object.PackageDeliveredTW == True %}
+					      		<td class="success">完成</td>
+					      	{% else %}
+					      		<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	{% if orderstatus_object.Sent == True %}
+					      		<td class="success">完成</td>
+					      	{% else %}
+					      		<td class="danger">未完成</td>
+					      	{% endif %}
+
+					      	<td>{{ orderstatus_object.TraceNo }}</td>
+					      	<!-- <td><a href=""><button class="btn btn-primary btn-xs">修改</button></a></td> -->
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					    
+					  </table>
+    			</div>
+    			<!-- <div class="col-sm-2"></div> -->
+    		</div>
+    	</div>
+
+	</div><br><br><br><br><br><br><br>
+
+	<div class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container">
+	      <p class="navbar-text pull-left">
+	      著作權© 2018 拍賣網站 <b>x</b> linth。版權所有。All Right Reserved.</p>
+	  </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>拍賣網站首頁</title>
+	<!-- Bootstrap core CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	{% load staticfiles %}
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <!-- <link href="{% static 'resume/css/bootstrap.min.css' %}" rel="stylesheet"> -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	  <!-- Custom styles for this template -->
+	  <!-- <link href="{% static 'signin.css' %}" rel="stylesheet"> -->
+
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+	  <nav class="navbar navbar-default">
+	    <div class="container-fluid">
+	      <div class="navbar-header">
+	        <a class="navbar-brand" href="{% url 'home' %}">拍賣網站</a>
+	      </div>
+	      <ul class="nav navbar-nav">
+	      	<li><a href="{% url 'order_form' %}">填寫訂購單</a></li>
+	      	<li><a href="{% url 'order_check' %}">匯款確認單</a></li>
+	      	<li><a href="{% url 'order_second_check' %}">第二次匯款確認單</a></li>
+	        <li><a href="{% url 'search' %}">訂單追蹤系統</a></li>
+	        <!-- <li><a href="#">聯絡我</a></li> -->
+	      </ul>
+	    </div>
+	  </nav>
+	</head>
+	<body>
+
+	<div class="container">
+    	<div class="jumbotron" style="font-size: 30px">
+	      <strong>拍賣網站</strong>
+	      <p class="lead">拍賣網站推出訂單查詢系統囉!! 讓喜愛代購的朋友輕鬆掌握代購進度~
+    	</div>
+
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-sm-2"></div>
+    			<div class="col-sm-8">
+    				<div class="alert alert-warning">
+			    		<h3><strong class="glyphicon glyphicon-file"><b>步驟1:</b></strong></h3>
+			    		<h4>私訊確認價格 (可用FB, LINE, Email)</h4>
+			    	</div>
+
+			    	<div class="alert alert-info">
+			    		<h3><strong class="glyphicon glyphicon-file"><b>步驟2:</b></strong></h3>
+			    		<h4>填寫訂購單 (送出表單後會有匯款資訊) <a href="{% url 'order_form' %}"><button class="btn btn-primary">填寫訂購單</button></a></a></h4>
+			    	</div>
+
+			    	<div class="alert alert-warning">
+			    		<h3><strong class="glyphicon glyphicon-file"><b>步驟3:</b></strong></h3>
+			    		<h4>匯款後請回傳 <a href="{% url 'order_check' %}"><button class="btn btn-warning">匯款確認單</button></a></h4>
+			    	</div>
+
+			    	<div class="alert alert-info">
+			    		<h3><strong class="glyphicon glyphicon-file"><b>步驟4:</b></strong></h3>
+			    		<h4>訂單追蹤系統 <a href="{% url 'search' %}"><button class="btn btn-primary">訂單追蹤系統</button></a></h4>
+			    	</div>
+
+			    	<div class="alert alert-warning">
+			    		<h3><strong class="glyphicon glyphicon-file"><b>步驟5:</b></strong></h3>
+			    		<h4>第二次匯款後請回傳 <a href="{% url 'order_second_check' %}"><button class="btn btn-warning">第二次匯款確認單</button></a></h4>
+			    	</div>
+
+			    	<div class="alert alert-info">
+			    		<h3><strong class="glyphicon glyphicon-file"><b>步驟6:</b></strong></h3>
+			    		<h4>收到商品~~跟瞎拼包分享可獲得50元購物金:D</h4>
+			    	</div>
+    			</div>
+    			<div class="col-sm-2"></div>
+    		</div>
+    	</div>
+	</div><br><br><br>
+
+	<div class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container">
+	      <p class="navbar-text pull-left">
+	      著作權© 2018 拍賣網站 <b>x</b> linth。版權所有。All Right Reserved.</p>
+	  </div>
+	</div>
+</body>
+</html>
